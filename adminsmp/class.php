@@ -80,7 +80,7 @@ class kategori
 	function ambil_kategori($idnya)
 	{
 		$ambildata = mysqli_query("SELECT FROM kategori WHERE id_kategori='idnya'");
-		$ad = mysql_fetch_assoc($ambildata);
+		$ad = mysqli_fetch_assoc($ambildata);
 		$data[] = $ad;
 		return $data;
 	}
@@ -97,7 +97,7 @@ class berita
 		$ambildata = mysqli_query("SELECT * FROM berita b join kategori k on b.id_kategori=k.id_kategori");
 		if(mysqli_num_rows($ambildata) > 0)
 		{
-			whiile($a = mysqli_fetch_assoc($ambildata))
+			while($a = mysqli_fetch_assoc($ambildata))
 				$data[] = $a;
 			return $data;
 		}
@@ -119,7 +119,7 @@ class berita
 		$lokasigambar = $gambar['tmp_name'];
 		move_uploaded_file($lokasigambar, "gambar_berita/$namagambar");
 		$hariini = date('Y-m-d');
-		mysqli_query("INSERT INTO berita (judul,id_kategori,tanggal,isi,gambar) VALUES ('$judul','$kategori','$hariini','$isi','$namagambar')")
+		mysqli_query("INSERT INTO berita (judul,id_kategori,tanggal,isi,gambar) VALUES ('$judul','$kategori','$hariini','$isi','$namagambar')");
 	}
 	function hapus_berita($idb)
 	{
@@ -128,7 +128,7 @@ class berita
 	function ambil_berita($idb)
 	{
 		$ambil = mysqli_query("SELECT FROM berita WHERE id_berita='idb'");
-		return mysql_fetch_assoc($ambil);
+		return mysqli_fetch_assoc($ambil);
 	}
 	function ubah_berita($idb,$judul,$kategori,$isi,$gambar)
 	{
